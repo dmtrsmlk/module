@@ -1,0 +1,6 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Small_Test::custom" title="Custom" module="Small_Test" sortOrder="51" resource="Small_Test::custom"/>
+        <add id="Small_Test::log" title="Admin Logger" module="Small_Test" sortOrder="10" action="small/log" resource="Small_Test::log" parent="Small_Test::custom"/>
+    </menu>
+</config>
