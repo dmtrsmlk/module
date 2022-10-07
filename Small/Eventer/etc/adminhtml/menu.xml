@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Small_Eventer::custom" title="Custom" module="Small_Eventer" sortOrder="51" resource="Small_Eventer::custom"/>
+        <add id="Small_Eventer::log" title="Admin Logger" module="Small_Eventer" sortOrder="10" action="small/log" resource="Small_Eventer::log" parent="Small_Eventer::custom"/>
+    </menu>
+</config>

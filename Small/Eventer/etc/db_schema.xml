@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-    <table name="log" resource="default" engine="innodb" comment="Logs Table">
+    <table name="admin_log" resource="default" engine="innodb" comment="Logs Table">
         <column xsi:type="int" name="log_id" unsigned="true" nullable="false" identity="true" comment="Log ID"/>
-        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Object Id"/>
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" comment="Object Id"/>
         <column xsi:type="varchar" name="entity" nullable="false"/>
         <column xsi:type="varchar" name="name" nullable="false"/>
         <column xsi:type="datetime" name="created_at" nullable="false"/>
@@ -12,20 +12,6 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="log_id"/>
         </constraint>
-        <constraint xsi:type="foreign"
-                    referenceId="LOG_LOG_ID_CATALOG_CATEGORY_ENTITY_ENTT_ID"
-                    table="log"
-                    column="entity_id"
-                    referenceTable="catalog_category_entity"
-                    referenceColumn="entity_id"
-        />
-        <constraint xsi:type="foreign"
-                  referenceId="LOG_LOG_ID_ADMIN_USER_USR_ID"
-                  table="log"
-                  column="username"
-                  referenceTable="admin_user"
-                  referenceColumn="user_id"
-        />
     </table>
 </schema>
-<!--@TODO: Check table columns for references-->
+<!--@TODO: Check table-->

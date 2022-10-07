@@ -1,0 +1,17 @@
+{
+    "admin_log": {
+        "column": {
+            "log_id": true,
+            "entity_id": true,
+            "entity": true,
+            "name": true,
+            "created_at": true,
+            "username": true,
+            "store": true,
+            "action": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

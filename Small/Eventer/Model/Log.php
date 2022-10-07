@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace Small\EventLogger\Model;
+namespace Small\Eventer\Model;
 
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\Model\AbstractModel;
@@ -15,7 +15,7 @@ class Log extends AbstractModel implements IdentityInterface
 
     protected function _construct()
     {
-        $this->_init('\Small\EventLogger\Model\ResourceModel\Log');
+        $this->_init('\Small\Eventer\Model\ResourceModel\Log');
     }
 
     public function getIdentities()

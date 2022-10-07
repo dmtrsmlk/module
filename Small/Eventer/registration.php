@@ -6,4 +6,4 @@
 
 use Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Small_EventLogger', __DIR__);
+ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Small_Eventer', __DIR__);
