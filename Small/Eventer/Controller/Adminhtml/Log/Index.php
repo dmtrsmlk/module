@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Small\EventerController\Adminhtml\Logger;
+namespace Small\Eventer\Controller\Adminhtml\Log;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
