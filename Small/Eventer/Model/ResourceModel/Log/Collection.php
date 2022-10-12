@@ -4,7 +4,8 @@ declare(strict_types=1);
 namespace Small\Eventer\Model\ResourceModel\Log;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use Small\Eventer\Model\ResourceModel\Log;
+use Small\Eventer\Model\ResourceModel\Log as LogResource;
+use Small\Eventer\Model\Log;
 
 
 class Collection extends AbstractCollection
@@ -20,6 +21,6 @@ class Collection extends AbstractCollection
      */
     protected function _construct()
     {
-        $this->_init('Small\Eventer\Model\Log', Log::class);
+        $this->_init(Log::class, LogResource::class);
     }
 }
