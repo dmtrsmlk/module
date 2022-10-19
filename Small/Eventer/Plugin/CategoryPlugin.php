@@ -13,10 +13,10 @@ class CategoryPlugin
         $this->eventLogCategoryService = $eventLogCategoryService;
     }
 
-    public function afterSave(\Magento\Catalog\Model\ResourceModel\Category $subject, $category)
+    public function afterSave(\Magento\Catalog\Model\ResourceModel\Category $subject, $result, $category)
     /*@TODO Add smth to get values */
     {
-        $eventData = $subject; //some data from category
+        $eventData = $category->getData(); //some data from category
         $this->eventLogCategoryService->execute($eventData);
     }
 }
