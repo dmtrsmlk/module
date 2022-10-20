@@ -14,7 +14,6 @@ class CategoryPlugin
     }
 
     public function afterSave(\Magento\Catalog\Model\ResourceModel\Category $subject, $result, $category)
-    /*@TODO Add smth to get values */
     {
         $eventData = $category->getData(); //some data from category
         $this->eventLogCategoryService->execute($eventData);

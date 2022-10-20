@@ -18,6 +18,14 @@ class Log extends AbstractModel implements IdentityInterface
 
     const USERNAME = 'username';
 
+    const KEY_CREATED_AT = 'created_at';
+
+    const KEY_UPDATED_AT = 'updated_at';
+
+    const KEY_STORE = 'store';
+
+    const ACTION = 'action';
+
     protected $_cacheTag = 'custom_log';
 
     protected $_eventPrefix = 'custom_log';
@@ -35,15 +43,14 @@ class Log extends AbstractModel implements IdentityInterface
         return [self::CACHE_TAG.'_'.$this->getId()];
     }
 
-    /**
-     * @return array
-     */
-    public function getDefaultValues()
-    {
-        $values = [];
-
-        return $values;
-    }
+//    /**
+//     * @return array
+//     */
+//    public function getDefaultValues()
+//    {
+//        $values = ['entity_id', 'entity', 'name', 'created_at', 'username', 'store', 'action'];
+//        return $values;
+//    }
 
     /**
      * @return array
@@ -69,6 +76,11 @@ class Log extends AbstractModel implements IdentityInterface
         return $this->getData(self::NAME);
     }
 
+    public function getCreatedAt()
+    {
+        return $this->setData(self::KEY_CREATED_AT);
+    }
+
     /**
      * @return array
      */
@@ -77,6 +89,15 @@ class Log extends AbstractModel implements IdentityInterface
         return $this->getData(self::USERNAME);
     }
 
+    public function getStore()
+    {
+        return $this->setData(self::KEY_STORE);
+    }
+
+    public function getAction()
+    {
+        return $this->setData(self::ACTION);
+    }
     /**
      * @param $entity_id
      * @return Log
@@ -105,6 +126,17 @@ class Log extends AbstractModel implements IdentityInterface
     }
 
     /**
+     * Set created at
+     *
+     * @param string $createdAt
+     * @return $this
+     */
+    public function setCreatedAt($createdAt)
+    {
+        return $this->setData(self::KEY_CREATED_AT, $createdAt);
+    }
+
+    /**
      * @param $username
      * @return Log
      */
@@ -112,5 +144,16 @@ class Log extends AbstractModel implements IdentityInterface
     {
         return $this->setData(self::USERNAME, $username);
     }
+
+    public function setStore($store)
+    {
+        return $this->setData(self::KEY_STORE, $store);
+    }
+
+    public function setAction($action)
+    {
+        return $this->setData(self::ACTION, $action);
+    }
+
 }
 

@@ -46,12 +46,11 @@ class Log extends AbstractDb
      * @return $this|Log
      * @throws \Exception
      */
-    public function save(AbstractModel $object)
+    public function save(\Magento\Framework\Model\AbstractModel $object)
     {
         $this->entityManager->save($object);
         return $this;
     }
-
 
     /**
      * @param AbstractModel $object
