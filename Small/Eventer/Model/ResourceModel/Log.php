@@ -12,15 +12,19 @@ class Log extends AbstractDb
     /**
      * @var EntityManager
      */
-    protected $entityManager;
+    private EntityManager $entityManager;
 
     private const TABLE = 'admin_log';
 
     private const PRIMARY_KEY = 'log_id';
 
-    public function __construct(Context $context)
+    public function __construct(
+        Context $context,
+        EntityManager $entityManager
+    )
     {
         parent::__construct($context);
+        $this->entityManager = $entityManager;
     }
 
     protected function _construct()
@@ -36,7 +40,7 @@ class Log extends AbstractDb
      */
     public function load(AbstractModel $object, $value, $field = null)
     {
-        //@TODO: Fix the shitty method
+        //@TODO: Fix the "Unknown entity type: Small\Eventer\Model\Log requested", caused by EntityManager
         $this->entityManager->load($object, $value);
         return $this;
     }

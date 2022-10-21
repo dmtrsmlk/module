@@ -8,29 +8,29 @@ use Small\Eventer\Model\ResourceModel\Log as LogResource;
 
 class Log extends AbstractModel implements IdentityInterface
 {
-    const CACHE_TAG = 'custom_log';
+    private const CACHE_TAG = 'custom_log';
 
-    const ENTITY_ID = 'entity_id';
+    private const ENTITY_ID = 'entity_id';
 
-    const ENTITY = 'entity';
+    private const ENTITY = 'entity';
 
-    const NAME = 'name';
+    private const NAME = 'name';
 
-    const USERNAME = 'username';
+    private const USERNAME = 'username';
 
-    const KEY_CREATED_AT = 'created_at';
+    private const KEY_CREATED_AT = 'created_at';
 
-    const KEY_UPDATED_AT = 'updated_at';
+    private const KEY_UPDATED_AT = 'updated_at';
 
-    const KEY_STORE = 'store';
+    private const KEY_STORE = 'store';
 
-    const ACTION = 'action';
+    private const ACTION = 'action';
 
     protected $_cacheTag = 'custom_log';
 
     protected $_eventPrefix = 'custom_log';
 
-    protected function _construct()
+    private function _construct()
     {
         $this->_init(LogResource::class);
     }
@@ -43,14 +43,14 @@ class Log extends AbstractModel implements IdentityInterface
         return [self::CACHE_TAG.'_'.$this->getId()];
     }
 
-//    /**
-//     * @return array
-//     */
-//    public function getDefaultValues()
-//    {
-//        $values = ['entity_id', 'entity', 'name', 'created_at', 'username', 'store', 'action'];
-//        return $values;
-//    }
+    /**
+     * @return array
+     */
+    public function getDefaultValues()
+    {
+        $values = [];
+        return $values;
+    }
 
     /**
      * @return array
@@ -76,6 +76,9 @@ class Log extends AbstractModel implements IdentityInterface
         return $this->getData(self::NAME);
     }
 
+    /**
+     * @return Log
+     */
     public function getCreatedAt()
     {
         return $this->setData(self::KEY_CREATED_AT);
@@ -89,11 +92,17 @@ class Log extends AbstractModel implements IdentityInterface
         return $this->getData(self::USERNAME);
     }
 
+    /**
+     * @return Log
+     */
     public function getStore()
     {
         return $this->setData(self::KEY_STORE);
     }
 
+    /**
+     * @return Log
+     */
     public function getAction()
     {
         return $this->setData(self::ACTION);
@@ -145,11 +154,19 @@ class Log extends AbstractModel implements IdentityInterface
         return $this->setData(self::USERNAME, $username);
     }
 
+    /**
+     * @param $store
+     * @return Log
+     */
     public function setStore($store)
     {
         return $this->setData(self::KEY_STORE, $store);
     }
 
+    /**
+     * @param $action
+     * @return Log
+     */
     public function setAction($action)
     {
         return $this->setData(self::ACTION, $action);

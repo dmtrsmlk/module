@@ -13,7 +13,14 @@ class CategoryPlugin
         $this->eventLogCategoryService = $eventLogCategoryService;
     }
 
-    public function afterSave(\Magento\Catalog\Model\ResourceModel\Category $subject, $result, $category)
+    /**
+     * @param \Magento\Catalog\Model\ResourceModel\Category $subject
+     * @param $result
+     * @param $category
+     * @return void
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function afterSave(\Magento\Catalog\Model\ResourceModel\Category $subject, $result, $category) :void
     {
         $eventData = $category->getData(); //some data from category
         $this->eventLogCategoryService->execute($eventData);
