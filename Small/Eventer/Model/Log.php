@@ -5,21 +5,16 @@ declare(strict_types=1);
 namespace Small\Eventer\Model;
 
 use Magento\Framework\DataObject\IdentityInterface;
+use Small\Eventer\Api\Data\LogInterface;
 use Magento\Framework\Model\AbstractModel;
 use Small\Eventer\Model\ResourceModel\Log as LogResource;
 
-class Log extends AbstractModel implements IdentityInterface
+
+class Log extends AbstractModel implements
+    IdentityInterface,
+    LogInterface
 {
-    private const CACHE_TAG = 'custom_log';
-    private const LOG_ID = 'log_id';
-    private const ENTITY_ID = 'entity_id';
-    private const ENTITY = 'entity';
-    private const NAME = 'name';
-    private const USERNAME = 'username';
-    private const KEY_CREATED_AT = 'created_at';
-    private const KEY_UPDATED_AT = 'updated_at';
-    private const KEY_STORE = 'store';
-    private const ACTION = 'action';
+
     protected $_cacheTag = 'custom_log';
     protected $_eventPrefix = 'custom_log';
 
@@ -139,7 +134,7 @@ class Log extends AbstractModel implements IdentityInterface
      * @param $name
      * @return Log
      */
-    public function setName($name)
+    public function setName($name): Log
     {
         return $this->setData(self::NAME, $name);
     }
@@ -150,7 +145,7 @@ class Log extends AbstractModel implements IdentityInterface
      * @param string $createdAt
      * @return $this
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt($createdAt): static
     {
         return $this->setData(self::KEY_CREATED_AT, $createdAt);
     }
@@ -159,7 +154,7 @@ class Log extends AbstractModel implements IdentityInterface
      * @param $username
      * @return Log
      */
-    public function setUsername($username)
+    public function setUsername($username): Log
     {
         return $this->setData(self::USERNAME, $username);
     }
@@ -168,7 +163,7 @@ class Log extends AbstractModel implements IdentityInterface
      * @param $store
      * @return Log
      */
-    public function setStore($store)
+    public function setStore($store): Log
     {
         return $this->setData(self::KEY_STORE, $store);
     }
@@ -177,7 +172,7 @@ class Log extends AbstractModel implements IdentityInterface
      * @param $action
      * @return Log
      */
-    public function setAction($action)
+    public function setAction($action): Log
     {
         return $this->setData(self::ACTION, $action);
     }

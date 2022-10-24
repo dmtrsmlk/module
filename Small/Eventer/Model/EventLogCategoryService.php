@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Small\Eventer\Model;
 
+use Magento\Framework\Exception\AlreadyExistsException;
 use Magento\Framework\Model\AbstractModel;
 
 
@@ -16,12 +17,12 @@ class EventLogCategoryService extends AbstractModel
     /**
      * @var LogFactory
      */
-    private $logFactory;
+    private LogFactory $logFactory;
 
     /**
      * @var ResourceModel\Log
      */
-    private $logResource;
+    private ResourceModel\Log $logResource;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
@@ -56,7 +57,6 @@ class EventLogCategoryService extends AbstractModel
      */
     public function execute($eventData) :void
     {
-        //@TODO: Add values at setStore() and setAction(), split getUsername() and getTimestamp()
         //extract data from $eventData and set to $log object
         $store = $this->storeManager->getStore();
         $storeName = $store ? $store->getName() : null;
@@ -64,13 +64,17 @@ class EventLogCategoryService extends AbstractModel
         $username = $this->_authSession->getUser()->getUserName();
         $log = $this->logFactory->create();
         $log->setEntityId($eventData['entity_id']);
-        $log->setEntity('category');
+        $log->setEntity($eventData['_eventPrefix']);
         $log->setName($eventData['name']);
-        $log->setCreatedAt($date);
+        $log->setCreatedAt($date); // can use $eventData['created_at']
         $log->setUsername($username);
         $log->setStore($storeName . ' Store');
         $log->setAction('Create');
-        $this->logResource->save($log);
+        try {
+            $this->logResource->save($log);
+        } catch (AlreadyExistsException|\Exception $e) {
+            __('Unknown Error');
+        }
     }
 
 }

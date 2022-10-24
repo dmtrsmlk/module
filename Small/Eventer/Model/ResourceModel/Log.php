@@ -10,51 +10,25 @@ use Magento\Framework\Model\ResourceModel\Db\Context;
 class Log extends AbstractDb
 {
     /**
-     * @var EntityManager
+     * If save(), load(), delete will be implemented, do:
+     * 1. Create ReposioryInterface -> Small\Eventer\Api
+     * 2. Create Repository -> Small\Eventer\Model
+     * !!!DO NOT CREATE CRUD METHODS IN ResourceModel!!!
      */
-    private EntityManager $entityManager;
-
     private const TABLE = 'admin_log';
 
     private const PRIMARY_KEY = 'log_id';
 
     public function __construct(
-        Context $context,
-        EntityManager $entityManager
+        Context $context
     )
     {
         parent::__construct($context);
-        $this->entityManager = $entityManager;
     }
 
     protected function _construct()
     {
         $this->_init(self::TABLE, self::PRIMARY_KEY);
-    }
-
-    /**
-     * @param AbstractModel $object
-     * @param $value
-     * @param $field
-     * @return $this|Log
-     */
-    public function load(AbstractModel $object, $value, $field = null)
-    {
-        //@TODO: Fix the "Unknown entity type: Small\Eventer\Model\Log requested", caused by EntityManager
-        $this->entityManager->load($object, $value);
-        return $this;
-    }
-
-
-    /**
-     * @param AbstractModel $object
-     * @return $this|Log
-     * @throws \Exception
-     */
-    public function delete(AbstractModel $object)
-    {
-        $this->entityManager->delete($object);
-        return $this;
     }
 
 }
