@@ -26,12 +26,12 @@ class EventLogCategoryService extends AbstractModel
     /**
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
      */
-    private $timezone;
+    private \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone;
 
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
-    private $storeManager;
+    private \Magento\Store\Model\StoreManagerInterface $storeManager;
 
     public function __construct(
         \Small\Eventer\Model\LogFactory $logFactory,
@@ -58,18 +58,18 @@ class EventLogCategoryService extends AbstractModel
     {
         //@TODO: Add values at setStore() and setAction(), split getUsername() and getTimestamp()
         //extract data from $eventData and set to $log object
-        $storeName = $this->storeManager->getStore()->getName();
-        $date = $this->timezone->date()->format('Y-m-d H:m:s');
+        $store = $this->storeManager->getStore();
+        $storeName = $store ? $store->getName() : null;
+        $date = new \DateTime();
         $username = $this->_authSession->getUser()->getUserName();
         $log = $this->logFactory->create();
-        $log->setId($eventData['entity_id']+60);
         $log->setEntityId($eventData['entity_id']);
         $log->setEntity('category');
         $log->setName($eventData['name']);
         $log->setCreatedAt($date);
         $log->setUsername($username);
-        $log->setStore($storeName.' Store');
-        $log->setAction('create');
+        $log->setStore($storeName . ' Store');
+        $log->setAction('Create');
         $this->logResource->save($log);
     }
 

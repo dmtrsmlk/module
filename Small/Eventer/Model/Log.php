@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Small\Eventer\Model;
 
 use Magento\Framework\DataObject\IdentityInterface;
@@ -9,28 +11,19 @@ use Small\Eventer\Model\ResourceModel\Log as LogResource;
 class Log extends AbstractModel implements IdentityInterface
 {
     private const CACHE_TAG = 'custom_log';
-
+    private const LOG_ID = 'log_id';
     private const ENTITY_ID = 'entity_id';
-
     private const ENTITY = 'entity';
-
     private const NAME = 'name';
-
     private const USERNAME = 'username';
-
     private const KEY_CREATED_AT = 'created_at';
-
     private const KEY_UPDATED_AT = 'updated_at';
-
     private const KEY_STORE = 'store';
-
     private const ACTION = 'action';
-
     protected $_cacheTag = 'custom_log';
-
     protected $_eventPrefix = 'custom_log';
 
-    private function _construct()
+    protected function _construct()
     {
         $this->_init(LogResource::class);
     }
@@ -38,24 +31,31 @@ class Log extends AbstractModel implements IdentityInterface
     /**
      * @return string[]
      */
-    public function getIdentities()
+    public function getIdentities(): array
     {
         return [self::CACHE_TAG.'_'.$this->getId()];
     }
 
     /**
-     * @return array
+     * @return int
      */
-    public function getDefaultValues()
+    public function getLogId(): int
     {
-        $values = [];
-        return $values;
+        return $this->getData(self::LOG_ID);
     }
 
     /**
      * @return array
      */
-    public function getEntityId()
+    public function getDefaultValues(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function getEntityId(): array
     {
         return $this->getData(self::ENTITY_ID);
     }
@@ -63,7 +63,7 @@ class Log extends AbstractModel implements IdentityInterface
     /**
      * @return array
      */
-    public function getEntity()
+    public function getEntity(): array
     {
         return $this->getData(self::ENTITY);
     }
@@ -71,7 +71,7 @@ class Log extends AbstractModel implements IdentityInterface
     /**
      * @return array
      */
-    public function getName()
+    public function getName(): array
     {
         return $this->getData(self::NAME);
     }
@@ -79,7 +79,7 @@ class Log extends AbstractModel implements IdentityInterface
     /**
      * @return Log
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): Log
     {
         return $this->setData(self::KEY_CREATED_AT);
     }
@@ -87,7 +87,7 @@ class Log extends AbstractModel implements IdentityInterface
     /**
      * @return array
      */
-    public function getUsername()
+    public function getUsername(): array
     {
         return $this->getData(self::USERNAME);
     }
@@ -95,7 +95,7 @@ class Log extends AbstractModel implements IdentityInterface
     /**
      * @return Log
      */
-    public function getStore()
+    public function getStore(): Log
     {
         return $this->setData(self::KEY_STORE);
     }
@@ -103,24 +103,34 @@ class Log extends AbstractModel implements IdentityInterface
     /**
      * @return Log
      */
-    public function getAction()
+    public function getAction(): Log
     {
         return $this->setData(self::ACTION);
     }
+
     /**
-     * @param $entity_id
+     * @param $logId
      * @return Log
      */
-    public function setEntityId($entity_id)
+    public function setLogId($logId): Log
     {
-        return $this->setData(self::ENTITY_ID, $entity_id);
+        return $this->setData(self::LOG_ID, $logId);
     }
 
     /**
-     * @param $entity
+     * @param $entityId
      * @return Log
      */
-    public function setEntity($entity)
+    public function setEntityId($entityId): Log
+    {
+        return $this->setData(self::ENTITY_ID, $entityId);
+    }
+
+    /**
+     * @param string $entity
+     * @return Log
+     */
+    public function setEntity(string $entity): Log
     {
         return $this->setData(self::ENTITY, $entity);
     }
