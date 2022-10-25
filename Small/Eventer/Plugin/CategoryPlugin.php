@@ -22,11 +22,10 @@ class CategoryPlugin
     public function beforeSave(
         Category $subject,
         AbstractModel $object
-    )
+    ): void
     {
-        $objectData = $object->getData();
-        $this->eventLogCategoryService->compare($objectData);
-        return $objectData;
+        $objectData = $object->getOrigData();
+//        $this->eventLogCategoryService->compare($objectData);
     }
     /**
      * @param Category $subject
