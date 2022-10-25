@@ -49,11 +49,6 @@ class EventLogCategoryService extends AbstractModel
         $this->storeManager = $storeManager;
     }
 
-    public function compare()
-    {
-
-    }
-
     /**
      * @param $eventData
      * @return void
@@ -61,7 +56,6 @@ class EventLogCategoryService extends AbstractModel
      */
     public function execute($eventData) :void
     {
-
         //extract data from $eventData and set to $log object
         $store = $this->storeManager->getStore();
         $storeName = $store ? $store->getName() : null;
@@ -74,7 +68,7 @@ class EventLogCategoryService extends AbstractModel
         $log->setCreatedAt($date); // can use $eventData['created_at']
         $log->setUsername($username);
         $log->setStore($storeName . ' Store');
-        $log->setAction('Create');
+        $log->setAction($eventData['action']);
         try {
             $this->logResource->save($log);
         } catch (AlreadyExistsException|\Exception $e) {
