@@ -30,16 +30,23 @@ class CategoryPlugin
         $eventData = $category->getData();
         $objectData = $category->getOrigData();
         $entityType = $result->getType();
-        if($objectData === null)
-        {
-            $eventData['action'] = 'Create';
-        }
-        else {
-            $eventData['action'] = 'Update';
-        }
-        $eventData['entity'] = $entityType;
-        $this->eventLogCategoryService->execute($eventData);
 
+        if($objectData!==null){
+            $objectData = array_merge($eventData, $objectData);
+            $objectData['updated_at'] = $eventData['updated_at'];
+        }
+
+        if ($objectData!=$eventData) {
+            if ($objectData !== $eventData) {
+                if ($objectData === null) {
+                    $eventData['action'] = 'Create';
+                } else {
+                    $eventData['action'] = 'Update';
+                }
+                $eventData['entity'] = $entityType;
+                $this->eventLogService->execute($eventData);
+            }
+        }
         return $result;
     }
 

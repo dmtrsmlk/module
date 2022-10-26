@@ -27,21 +27,28 @@ class BlockPlugin
         $block
     ): Block
     {
+
         $eventData = $block->getData();
         $objectData = $block->getOrigData();
         $entityType = 'block';
-        if($objectData === null)
-        {
-            $eventData['action'] = 'Create';
-        }
-        else {
-            $eventData['action'] = 'Update';
-        }
-        $eventData['entity'] = $entityType;
-        $eventData['entity_id'] = $eventData['block_id'];
-        $eventData['name'] = $eventData['title'];
-        $this->eventLogService->execute($eventData);
+        $objectData['update_time'] = null;
 
+        if($objectData!==null){
+            $objectData = array_merge($eventData, $objectData);
+            $objectData['update_time'] = null;
+        }
+
+        if ($objectData!==$eventData) {
+                if ($objectData === null) {
+                    $eventData['action'] = 'Create';
+                } else {
+                    $eventData['action'] = 'Update';
+                }
+                $eventData['entity'] = $entityType;
+                $eventData['entity_id'] = $eventData['block_id'];
+                $eventData['name'] = $eventData['title'];
+                $this->eventLogService->execute($eventData);
+        }
         return $result;
     }
 
