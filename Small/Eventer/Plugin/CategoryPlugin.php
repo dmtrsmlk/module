@@ -28,7 +28,7 @@ class CategoryPlugin
                  $category
     ): Category
     {
-        $eventData = $category->getData(); //some data from category
+        $eventData = $category->getData();
         $objectData = $category->getOrigData();
         $entityType = $result->getType();
         if($objectData === null)
@@ -39,7 +39,7 @@ class CategoryPlugin
             $eventData['action'] = 'Update';
         }
         $eventData['entity'] = $entityType;
-        $this->eventLogCategoryService->execute($eventData); //compare() w/o execute()
+        $this->eventLogCategoryService->execute($eventData);
 
         return $result;
     }
@@ -49,6 +49,7 @@ class CategoryPlugin
      * @param Category $result
      * @param $category
      * @return Category
+     * @throws NoSuchEntityException
      */
     public function afterDelete(
         Category $subject,
@@ -56,12 +57,12 @@ class CategoryPlugin
                  $category
     ): Category
     {
-        $eventData = $category->getData(); //some data from category
+        $eventData = $category->getData();
         $objectData = $category->getOrigData();
         $entityType = $result->getType();
         $eventData['action'] = 'Delete';
         $eventData['entity'] = $entityType;
-        $this->eventLogCategoryService->execute($eventData); //compare() w/o execute()
+        $this->eventLogCategoryService->execute($eventData);
 
         return $result;
     }
