@@ -10,7 +10,7 @@ use Small\Eventer\Model\EventLogService;
 
 class BlockPlugin
 {
-    public function __construct(private EventLogService $eventLogCategoryService)
+    public function __construct(private EventLogService $eventLogService)
     {
     }
 
@@ -40,7 +40,7 @@ class BlockPlugin
         $eventData['entity'] = $entityType;
         $eventData['entity_id'] = $eventData['block_id'];
         $eventData['name'] = $eventData['title'];
-        $this->eventLogCategoryService->execute($eventData);
+        $this->eventLogService->execute($eventData);
 
         return $result;
     }
@@ -65,7 +65,7 @@ class BlockPlugin
         $eventData['entity'] = $entityType;
         $eventData['entity_id'] = $eventData['block_id'];
         $eventData['name'] = $eventData['title'];
-        $this->eventLogCategoryService->execute($eventData);
+        $this->eventLogService->execute($eventData);
 
         return $result;
     }

@@ -10,7 +10,7 @@ use Small\Eventer\Model\EventLogService;
 
 class CategoryPlugin
 {
-    public function __construct(private EventLogService $eventLogCategoryService)
+    public function __construct(private EventLogService $eventLogService)
     {
     }
 
@@ -61,7 +61,7 @@ class CategoryPlugin
         $entityType = $result->getType();
         $eventData['action'] = 'Delete';
         $eventData['entity'] = $entityType;
-        $this->eventLogCategoryService->execute($eventData);
+        $this->eventLogService->execute($eventData);
 
         return $result;
     }

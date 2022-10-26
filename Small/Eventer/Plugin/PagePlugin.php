@@ -10,7 +10,7 @@ use Small\Eventer\Model\EventLogService;
 
 class PagePlugin
 {
-    public function __construct(private EventLogService $eventLogCategoryService)
+    public function __construct(private EventLogService $eventLogService)
     {
     }
 
@@ -41,7 +41,7 @@ class PagePlugin
         $eventData['entity'] = $entityType;
         $eventData['entity_id'] = $eventData['page_id'];
         $eventData['name'] = $eventData['title'];
-        $this->eventLogCategoryService->execute($eventData);
+        $this->eventLogService->execute($eventData);
 
         return $result;
     }
@@ -66,7 +66,7 @@ class PagePlugin
         $eventData['entity'] = $entityType;
         $eventData['entity_id'] = $eventData['page_id'];
         $eventData['name'] = $eventData['title'];
-        $this->eventLogCategoryService->execute($eventData);
+        $this->eventLogService->execute($eventData);
 
         return $result;
     }
