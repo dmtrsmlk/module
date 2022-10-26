@@ -7,7 +7,7 @@ use Magento\Framework\Exception\AlreadyExistsException;
 use Magento\Framework\Model\AbstractModel;
 
 
-class EventLogCategoryService extends AbstractModel
+class EventLogService extends AbstractModel
 {
     /**
      * @var \Magento\Backend\Model\Auth\Session

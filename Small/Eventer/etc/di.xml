@@ -4,6 +4,12 @@
         <type name="Magento\Catalog\Model\ResourceModel\Category">
             <plugin name="small_categoryplugin" type="Small\Eventer\Plugin\CategoryPlugin" sortOrder="10" disabled="false" />
         </type>
+        <type name="Magento\Cms\Model\ResourceModel\Block">
+            <plugin name="small_blockplugin" type="Small\Eventer\Plugin\BlockPlugin" sortOrder="11" disabled="false"/>
+        </type>
+        <type name="Magento\Cms\Model\ResourceModel\Page">
+            <plugin name="small_pageplugin" type="Small\Eventer\Plugin\PagePlugin" sortOrder="12" disabled="false"/>
+        </type>
         <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
             <arguments>
                 <argument name="collections" xsi:type="array">
