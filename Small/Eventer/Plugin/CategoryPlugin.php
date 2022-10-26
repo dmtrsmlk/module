@@ -15,23 +15,6 @@ class CategoryPlugin
     {
     }
 
-
-//    /**
-//     * @param Category $subject
-//     * @param AbstractModel $object
-//     * @return AbstractModel
-//     */
-//    public function beforeSave(
-//        Category $subject,
-//        AbstractModel $object
-//    ): AbstractModel
-//    {
-//        $objectData = $object->getOrigData();
-////        $this->eventLogCategoryService->compare($objectData);
-//
-//        return $objectData;
-//    }
-
     /**
      * @param Category $subject
      * @param Category $result
@@ -47,6 +30,7 @@ class CategoryPlugin
     {
         $eventData = $category->getData(); //some data from category
         $objectData = $category->getOrigData();
+        $entityType = $result->getType();
         if($objectData === null)
         {
             $eventData['action'] = 'Create';
@@ -54,20 +38,31 @@ class CategoryPlugin
         else {
             $eventData['action'] = 'Update';
         }
+        $eventData['entity'] = $entityType;
         $this->eventLogCategoryService->execute($eventData); //compare() w/o execute()
 
         return $result;
     }
 
+    /**
+     * @param Category $subject
+     * @param Category $result
+     * @param $category
+     * @return Category
+     */
     public function afterDelete(
         Category $subject,
         Category $result,
                  $category
-    )
+    ): Category
     {
-//        $eventData = $category->getData(); //some data from category
-//        $objectData = $category->getOrigData();
-//        $this->eventLogCategoryService->execute($eventData); //compare() w/o execute()
+        $eventData = $category->getData(); //some data from category
+        $objectData = $category->getOrigData();
+        $entityType = $result->getType();
+        $eventData['action'] = 'Delete';
+        $eventData['entity'] = $entityType;
+        $this->eventLogCategoryService->execute($eventData); //compare() w/o execute()
+
         return $result;
     }
 }
