@@ -5,9 +5,10 @@ namespace Small\Eventer\Controller\Adminhtml\Log;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\View\Result\PageFactory;
 
-class Index extends Action
+class Index extends Action implements HttpGetActionInterface
 {
     protected $resultPageFactory = false;
 
