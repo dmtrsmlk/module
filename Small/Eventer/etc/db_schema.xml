@@ -8,6 +8,7 @@
         <column xsi:type="datetime" name="created_at" nullable="false"/>
         <column xsi:type="varchar" name="username" nullable="false"/>
         <column xsi:type="varchar" name="store" nullable="false"/>
+        <column xsi:type="smallint" name="is_active" unsigned="false" nullable="false" identity="false" default="1" comment="Is Block Active"/>
         <column xsi:type="varchar" name="action" nullable="false"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="log_id"/>

@@ -14,7 +14,6 @@ class Log extends AbstractModel implements
     IdentityInterface,
     LogInterface
 {
-
     protected $_cacheTag = 'custom_log';
     protected $_eventPrefix = 'custom_log';
 
@@ -93,6 +92,14 @@ class Log extends AbstractModel implements
     public function getStore(): Log
     {
         return $this->setData(self::KEY_STORE);
+    }
+
+    /**
+     * @return array
+     */
+    public function getAvailableStatuses(): array
+    {
+        return [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
     }
 
     /**

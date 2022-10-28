@@ -15,6 +15,8 @@ interface LogInterface
     const KEY_CREATED_AT = 'created_at';
     const KEY_UPDATED_AT = 'updated_at';
     const KEY_STORE = 'store';
+    const STATUS_ENABLED = 1;
+    const STATUS_DISABLED = 0;
     const ACTION = 'action';
 
     public function getLogId(): int;
@@ -53,6 +55,8 @@ interface LogInterface
      * @return object
      */
     public function getStore(): object;
+
+    public function getAvailableStatuses(): array;
 
     /**
      * @return object
